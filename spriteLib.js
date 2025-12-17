@@ -1,0 +1,22 @@
+/* spriteLib.js: A simple JavaScript library to draw sprites on an HTML canvas */
+
+class Sprite {
+    constructor(imageSrc, width, height) {
+        this.image = new Image();
+        this.image.src = imageSrc;
+        this.width = width;
+        this.height = height;
+    }
+
+    draw(ctx, x, y) {
+        if (this.image.complete) {
+            ctx.drawImage(this.image, x, y, this.width, this.height);
+        } else {
+            this.image.onload = () => {
+                ctx.drawImage(this.image, x, y, this.width, this.height);
+            };
+        }
+    }
+}
+
+export { Sprite };
